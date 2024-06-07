@@ -1,0 +1,1 @@
+export const portfolio = "https://mjxsh.vercel.app/"
