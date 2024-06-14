@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Cavet';
+    font-weight: 400;
+    src: url('./assets/fonts/Caveat/Caveat-VariableFont_wght.ttf') format('truetype');
+}
+
+.font-cavet {
+    font-family: 'cavet', sans-serif;
+  }
