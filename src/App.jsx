@@ -7,6 +7,7 @@ import DashboardPage from './pages/Dashboard'
 import HomePage from './pages/Home'
 import LoginPage from './pages/LoginPage'
 
+
 function App() {
     const router = createBrowserRouter(
       [{

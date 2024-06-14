@@ -1,50 +1,63 @@
 import { useRef, useState } from "react";
+import { Navigate } from "react-router-dom";
 import Custbuttons from "../components/UiComponents/CustButtons";
 import InputField from "../components/UiComponents/InputField";
-import InputButton from "../components/UiComponents/InputField";
+import { supabase } from "../utils/Supabase";
 import "./LoginPage.css";
 export default function LoginPage() {
   const [loginState, setLoginState] = useState(true);
-  const [loginData, setLoginData] = useState({
-    name:"none",
-    email:"none",
-    password:"none"
-  })
+  const [loginData, setLoginData] = useState(false)
   const nameRef =  useRef();
   const emailRef =  useRef();
   const passwordRef =  useRef();
+
+   
   function toggle() {
     setLoginState((loginState) => !loginState);
-    setLoginData({
-        name: '',
-        email: '',
-        password: ''
-    })
-    nameRef.current.value='';
-    emailRef.current.value='';
-    passwordRef.current.value='';
+    clearData();
+    
   }
-  function createAccount(){
-    console.log(nameRef.current.value+" "+emailRef.current.value+" "+passwordRef.current.value)
-    setLoginData({
-        name: nameRef.current.value,
+  async function createAccount(){
+    const { data, error } = await supabase.auth.signUp({
+        email: `${emailRef.current.value}`,
+        password: `${passwordRef.current.value}`,
+    });
+    localStorage.setItem('session', data.session);
+    console.log("data is" + data,"error is" + error);
+    clearData();
+  }
+
+
+async function login(){
+    const { data, error } = await supabase.auth.signInWithPassword({
         email: emailRef.current.value,
-        password: passwordRef.current.value
-    })
+        password: passwordRef.current.value,
+      })
+      localStorage.setItem("email",data.user.email)
+      console.log("data is "+ data.user.email,"error is "+error); 
+    if(!error){
+        setLoginData(true);
+    }
+    
   }
-  function login(){
-    console.log(emailRef.current.value+" "+passwordRef.current.value)
-    setLoginData({
-        email: emailRef.current.value,
-        password: passwordRef.current.value
-    })
+  if(loginData){
+    return <Navigate to ={`/dashboard/${localStorage.getItem("email")}`}/>;
   }
+  
+
+  function clearData(){
+    nameRef.current.value = "";
+    emailRef.current.value = "";
+    passwordRef.current.value = "";
+  }
+
+  
 
 
   return (
     <>
-      <div class="min-h-screen flex user-select-none items-center justify-center">
-        <div class=" flex w-2/3 mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow">
+      <div className="min-h-screen flex user-select-none items-center justify-center">
+        <div className=" flex w-2/3 mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow">
           <div className="w-1/2 start-0">
             <h1>{loginData.email +" "+ loginData.name +" "+ loginData.password}</h1>
           </div>
@@ -65,7 +78,7 @@ export default function LoginPage() {
             </div>
             }
             
-            <Custbuttons text={loginState ? "Login" :"Create Account"} callbackFunction={toggle}/>
+            <Custbuttons  text={loginState ? "Login Instead" :"Create Account"} callbackFunction={toggle}/>
             
           </div>
         </div>
