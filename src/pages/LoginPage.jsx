@@ -4,6 +4,10 @@ import Custbuttons from "../components/UiComponents/CustButtons";
 import InputField from "../components/UiComponents/InputField";
 import { supabase } from "../utils/Supabase";
 import "./LoginPage.css";
+import frameImg from '../assets/Frame1.webp'
+
+
+
 export default function LoginPage() {
   const [loginState, setLoginState] = useState(true);
   const [loginData, setLoginData] = useState(false)
@@ -29,14 +33,11 @@ export default function LoginPage() {
 
 
 async function login(){
-    const { data, error } = await supabase.auth.signInWithPassword({
-        email: emailRef.current.value,
-        password: passwordRef.current.value,
-      })
-      localStorage.setItem("email",data.user.email)
-      console.log("data is "+ data.user.email,"error is "+error); 
-    if(!error){
-        setLoginData(true);
+    if(emailRef.current.value != "" && passwordRef.current.value != "" ){
+        alert("hello")
+
+    }else{
+        alert("bye")
     }
     
   }
@@ -56,30 +57,27 @@ async function login(){
 
   return (
     <>
-      <div className="min-h-screen flex user-select-none items-center justify-center">
-        <div className=" flex w-2/3 mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow">
-          <div className="w-1/2 start-0">
-            <h1>{loginData.email +" "+ loginData.name +" "+ loginData.password}</h1>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className=" flex w-2/3 mx-auto p-6 text-white bg-gray-900 border border-gray-900 rounded-lg shadow">
+          <div className="w-3/5 start-0 p-0">
+            <img src={frameImg} className="h-max bg-cover p-0 rounded-lg" />
           </div>
-          <div className="w-1/2 end-0 text-center">
+          <div className="w-2/5 end-0 text-center items-center">
             {loginState ? <div className="flex-col">
-                <h1>Create An Account</h1>
-                <InputField field="User Name" ref={nameRef}/>
+                <h1 className="text-xl font-medium my-4">Sign Up to <span className="font-cavet text-3xl">designBuffer</span></h1>
                 <InputField  field="Email" ref={emailRef}/>
                 <InputField  field="Password" ref={passwordRef}/>
-                <Custbuttons text={"Submit"} callbackFunction={createAccount}/>
+                <Custbuttons text={"Sign in"} callbackFunction={createAccount}/>
             </div>
              : 
              <div className="flex-col">
-            <h1>Login</h1>
+            <h1 className="text-xl font-medium my-4">Login to <span className="font-cavet text-3xl">designBuffer</span></h1>
             <InputField  field="Email" ref={emailRef}/>
-            <InputField  field="password" ref={passwordRef}/>
-            <Custbuttons text={"Submit"} callbackFunction={login}/>
+            <InputField  field="Password" ref={passwordRef}/>
+            <Custbuttons text={"Login"} callbackFunction={login}/>
             </div>
             }
-            
             <Custbuttons  text={loginState ? "Login Instead" :"Create Account"} callbackFunction={toggle}/>
-            
           </div>
         </div>
       </div>

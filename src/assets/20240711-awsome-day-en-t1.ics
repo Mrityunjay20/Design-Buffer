@@ -1,0 +1,11 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+CLASS:PUBLIC
+DESCRIPTION:Join us on 11 July\, 2024 to fast-track your cloud learning on AWS Cloud concepts\, core AWS services\, and innovation opportunities.\n\nLog in link: https://awsomeday-apj.virtual.awsevents.com/\n\nView latest agenda: https://aws.amazon.com/events/awsome-day/awsome-day-online/#agenda\n\nQuestions? Email us at aws-apj-marketing@amazon.com\n\n--------------------------------------------------------\nSession Timings\n--------------------------------------------------------\n\nAustralia - GMT+10 (AEST) 10:30am\n\nNew Zealand - GMT+12 (NZST) 12:30pm\n\nSingapore / Malaysia / Philippines - GMT+8 (SGT/MYT/PHT) 8:30am\n\nThailand / Vietnam - GMT+7 (ICT) 7:30am\n\nIndonesia - GMT+7 (WIB) 07:30\n\nPakistan - GMT+5 (PKT) 5:30am\n\nIndia - GMT+5.30 (IST) 6:00am\n\nSri Lanka - GMT+5.30 (SLT) 6:00am\n\nKorea - GMT+9 (KST) 9:30am\n\nJapan - GMT+9 (JST) 9:30am\n
+DTSTART:20240711T003000Z
+DTEND:20240711T033000Z
+LOCATION:https://awsomeday-apj.virtual.awsevents.com/
+SUMMARY;LANGUAGE=en-us:AWSome Day Online Conference
+END:VEVENT
+END:VCALENDAR
