@@ -5,6 +5,6 @@ export default function HomePage(){
 
     return(<>
     <HeroSection bgcolour={"bg-blue-900"}/>
-    <About/>
+        <p>Work in progress.</p>
     </>)
 }
